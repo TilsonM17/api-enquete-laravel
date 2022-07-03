@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::resource("poll",Poll::class);
+Route::get('poll/{id}/vote/{id_vote}',[Poll::class,"vote"]);

@@ -57,10 +57,10 @@ class Poll extends Controller
             $option_data[] = [
                 'option_id' => $value->option_id,
                 'options' => $value->options,
-               
+
             ];
         }
-       
+
 
         return response()->json(
             [
@@ -70,7 +70,7 @@ class Poll extends Controller
                     'poll_id' => $poll->poll_id,
                     'poll_description' => $poll->poll_description,
                     'option' =>  $option_data
-                   
+
                 ]
             ],
             200
@@ -90,13 +90,32 @@ class Poll extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
      * @param  int  $id
+     * @param  int  $id_vote
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function vote($id, $id_vote)
     {
-        //
+        $poll = ModelsPoll::find($id);
+        $option = Option::where('poll_id', $id)->get();
+        if (!$poll or !$option) {
+            return response()->json([
+                'status' => 404,
+                'statusText' => 'Error', 'data' => 'Not Found'
+            ], 404);
+        }
+
+        foreach ($option as $key => $value) {
+            if ($value->option_id == $id_vote) {
+                $value->votes = $value->votes + 1;
+                $value->save();
+            }
+        }
+
+        return [
+            'option_id' => $id_vote
+        ];
+
+        
     }
 }
