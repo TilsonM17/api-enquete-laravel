@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+        Schema::create('option', function (Blueprint $table) {
+            $table->id("option_id");
+            //Add the foreign key to the poll table
+            $table->foreignId("poll_id")
+                ->constrained("poll","poll_id")
+                ->onUpdate("no action")
+                ->onDelete("cascade");
+                
+            $table->string("options",100);
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('option');
     }
 };
