@@ -14,5 +14,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::resource("poll",Poll::class);
-Route::get('poll/{id}/vote/{id_vote}',[Poll::class,"vote"]);
+Route::resource("poll",Poll::class)->only([
+    'store','show','vote'
+]);
+
+Route::prefix('poll')->group(function () {  
+    Route::get('{id}/vote/{id_vote}',[Poll::class,"vote"]);
+    Route::get("{id}/stats",[Poll::class,"stats"]);
+});
+

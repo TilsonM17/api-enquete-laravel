@@ -78,18 +78,6 @@ class Poll extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
      * @param  int  $id
      * @param  int  $id_vote
      * @return \Illuminate\Http\Response
@@ -117,5 +105,39 @@ class Poll extends Controller
         ];
 
         
+    }
+
+
+    public function stats(int $id){
+
+        $options = Option::where("poll_id",$id)->get();
+            if(!$options){
+                return response(status:404)->json([
+                    'status' => 404,
+                    'data' => 'Not Found'
+                ],404);
+            }
+
+            $poll = ModelsPoll::findOrfail($id);
+            $poll->views +=1;
+            $poll->save();
+
+
+
+            foreach($options as $opt){
+                $votes[] = [
+                    'option_id' => $opt->option_id,
+                    "qty" => $opt->votes
+                ];
+            }
+            
+        return response()->json(
+            [
+                'status' => 200,
+                'statusText' => 'OK',
+                "views" => $poll->refresh()->views,
+                "votes" => $votes
+            ]
+            );
     }
 }
