@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Main;
 use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
-/*
+/*localhost
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -13,3 +14,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('/', [Main::class,'index'])->name('user');
