@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('poll', function (Blueprint $table) {
             $table->id("poll_id");
-            $table->string("",100);
+            $table->string("poll_description",100);
             $table->timestamps();
             $table->softDeletes();
         });

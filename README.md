@@ -1,13 +1,13 @@
 # Desafio Enquete
 
  - [Introdução](#introdução)
- - [Descrição](#descrição)
+ - [Docs](#descrição)
  - [Obter o projecto](#obter-o-projecto)
 
 
 ## Introdução
 
->Este projecto consiste em criar uma API RESTfull de enquete desenvolvido em Laravel, e consumir em telas usando Vue no ecossistema Laravel. O serviço principal da api sera `GET /poll/:id`.Para manter a simplicidade, não houve autenticação nas APIs.
+> Este é uma api feita com Laravel e o Banco de Dados PostgresSql . O serviço principal da api sera `GET api/poll/:id`. Para manter a simplicidade, não houve autenticação nas APIs.
 
 **Nota**:
 Uma enquete é uma pesquisa, na qual as pessoas respondem uma pergunta escolhendo
@@ -15,7 +15,7 @@ dentre algumas alternativas pré-definidas
 
 ## Descrição
 
- #### Get `/poll/:id` 
+ #### Get  `api/poll/:id` 
 Vai retornar os dados de uma enquete:
 
     {
@@ -37,7 +37,7 @@ Vai retornar os dados de uma enquete:
 
 ---
 
-#### Post `/poll`
+#### Post  `api/poll`
 Vai criar uma nova enquete.
 
     {
@@ -58,7 +58,7 @@ E o retorno sera o  id da poll:
 
 ---
 
-#### Post `/poll/:id/vote/:id_option` 
+#### Post `api/poll/:id/vote/:id_option` 
 
 
 Vai registrar um novo voto para uma opção.
@@ -72,7 +72,7 @@ Vai registrar um novo voto para uma opção.
 
 ---
 
-#### Get `/poll/:id/stats`
+#### Get `api/poll/:id/stats`
 
 
 Vai retornar estatísticas sobre a enquete. As views de uma enquete devem ser
@@ -100,7 +100,7 @@ Vamos entrar na pasta do projecto, e instalar as dependecias com os comandos:
     $ cd teste-enquete-laravel
     $ composer install
 
-Defina as configurações do Banco de Dados Mysql no o arquivo `.env`, ou se preferir no arquivo `config/database.php`.
+Defina as configurações do Banco de Dados no o arquivo `.env`, ou se preferir no arquivo `config/database.php`.
 
 Depois rode as `migration`
 
@@ -112,10 +112,10 @@ Depois rode o projecto com o comando
 
 E em seguida acesse a url:
 
-> http://localhost:8000/api/poll/7
+> http://localhost:8000/api/poll/1
 
-**NOTA** : Usei o id 7 como exemplo
+**NOTA** : Usei o id 1 como exemplo
 
-## Screenshot
+
 
 
