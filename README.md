@@ -1,4 +1,4 @@
-# Desafio Enquete
+# Api rest para Enquete
 
  - [Introdução](#introdução)
  - [Docs](#descrição)
